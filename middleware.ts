@@ -1,10 +1,18 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-// This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
-  console.log(request);
-  const response = NextResponse.next();
-  // response.cookies.set("myCookie", "test");
-  return response;
+  console.log("Request URL", request.url);
+
+  if (new URL(request.url).pathname === "/") {
+    return NextResponse.next();
+  }
+
+  const newUrl = new URL("/", request.url);
+  console.log("Rewritten URL", newUrl);
+  return NextResponse.rewrite(newUrl);
 }
+
+export const config = {
+  matcher: "/((?!api|_next/static|favicon.ico).*)",
+};
