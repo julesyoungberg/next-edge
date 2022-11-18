@@ -7,6 +7,7 @@
     "build": "next build",
     "build:edge": "npx @cloudflare/next-on-pages --experimental-minify",
     "build:watch": "npx @cloudflare/next-on-pages --watch",
+    "dev:pages": "npx wrangler pages dev .vercel/output/static --compatibility-flags=transformstream_enable_standard_constructor --compatibility-flags=streams_enable_constructors",
     "start": "next start",
     "lint": "next lint"
   },
